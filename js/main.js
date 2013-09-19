@@ -1,10 +1,8 @@
 function doAPIRequest() {
   if (document.getElementById('actionField').value != "") {
     $('#responseField').val("");
-    $('errorField1').addClass('hidden');
-    $("errorField2").innerHTML = "";
-    $("responseField").addClass('hidden');
-    $("responseFieldLabel").addClass('hidden');
+    $("#responseField").addClass('hidden');
+    $("#responseFieldLabel").addClass('hidden');
     $('#responseField').val("");
     $('#statusField').val("");
     var host = $('#hostField').val().trim();
@@ -72,7 +70,6 @@ function sendRequest(postData, hasFile) {
               output.response = 'Success!';
             } else {
               try {
-                console.log(data);
                 output = jQuery.parseJSON(data);
               } catch(e) {
                 output = "Unexpected non-JSON response from the server: " + data;

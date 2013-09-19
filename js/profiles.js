@@ -74,10 +74,10 @@ function loadProfile(profileName) {
         $('#rmProfile').show();
       }
       profile = JSON.parse(profile);
-      $(hostField).val(profile['HOST']);
-      $(portField).val(profile['PORT']);
-      $(appIDField).val(profile['APPID']);
-      $(appKeyField).val(profile['APPKEY']);
+      $('#hostField').val(profile['HOST']);
+      $('#portField').val(profile['PORT']);
+      $('#appIDField').val(profile['APPID']);
+      $('#appKeyField').val(profile['APPKEY']);
 
       if(profile['SECURE']){
           $('#schemeField').prop('checked', true);
