@@ -19,7 +19,8 @@ function doAPIRequest() {
     var userKey = $('#userKeyField').val().trim();
     var userId = $('#userIDField').val().trim();
     var contentType = $('#contentType').val().trim();
-    var uploadFile = document.getElementById('fileInput').files[0];
+    var uploadFile = document.getElementById('fileInput').files ? 
+           document.getElementById('fileInput').files[0] : false;
 
     var data = {
           host: host,
