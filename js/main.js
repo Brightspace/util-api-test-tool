@@ -45,10 +45,10 @@ function doAPIRequest() {
         ajaxData.append(index, data[index] );
       }
       sendRequest(ajaxData, true);
-  }else{
-    sendRequest(data, false);
+    } else {
+      sendRequest(data, false);
+    } 
   }
-}
 }
 
 function sendRequest(postData, hasFile) {
@@ -171,7 +171,7 @@ $(document).ready(function() {
   if ((document.getElementById("appIDField").value == '' ) && (document.getElementById("appKeyField").value == '')) {
     if (localStorage.getItem('lastProfile') == 'authProfile') {
       loadProfile('authProfile');
-    }else{
+    } else {
       loadDefaults();
     }
   }
