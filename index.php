@@ -11,7 +11,7 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Desire2Learn Auth SDK Sample</title>
+		<title>Desire2Learn Auth SDK Console</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	</head>
@@ -19,7 +19,7 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 	<div class="container">
 		<div class="navbar navbar-default">
 	     	<div class="navbar-header">
-	          <a class="navbar-brand" style='color:black;'>Desire2Learn Auth SDK Sample</a>
+	          <a class="navbar-brand" style='color:black;'>Desire2Learn Auth SDK Console</a>
 	        </div> 	
 	        <div class="navbar-collapse">
 	          <form class='navbar-form navbar-right col-md-12'>
