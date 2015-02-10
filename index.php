@@ -11,7 +11,7 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Desire2Learn Auth SDK Console</title>
+		<title>API Test Tool</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	</head>
@@ -19,7 +19,7 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 	<div class="container">
 		<div class="navbar navbar-default">
 	     	<div class="navbar-header">
-	          <a class="navbar-brand" style='color:black;'>Desire2Learn Auth SDK Console</a>
+	          <a class="navbar-brand" style='color:black;'>API Test Tool</a>
 	        </div> 	
 	        <div class="navbar-collapse">
 	          <form class='navbar-form navbar-right col-md-12'>
@@ -62,7 +62,7 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 			</div>
 			<div id='authButtons' class="form-group">
 				<div class='col-md-offset-1' id='userDiv'>
-					<p class="help-block" id='authNotice'> Note: to authenticate against the test server, you can user username "sampleapiuser" and password "Tisabiiif". </p> 
+					<p class="help-block" id='authNotice'> Note: To authenticate against the test server, you can user username "DevCoPStudent" and password "/10T41.Vf\0w~=O". Members can visit the <a href="https://community.brightspace.com/devcop/devenvironment">Dev CoP</a> to access additional accounts. </p> 
 					<input class="btn btn-primary " type="submit" name="authBtn" value="Authenticate" id="authenticateBtn">
 					<input class="btn btn-default" type="button" id="manualBtn" value="Manually set credentials" name='authBtn' onclick="setCredentials()">
 				</div>

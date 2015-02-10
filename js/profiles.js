@@ -107,7 +107,7 @@ function removeProfile(profileName) {
 
 function loadDefaults() {
   var defaultProfile = "New Profile";
-  $('#hostField').val("lms.valence.desire2learn.com");
+  $('#hostField').val("devcop.brightspacedemo.com");
   $('#portField').val("443");
   $('#appIDField').val('G9nUpvbZQyiPrk3um2YAkQ');
   $('#appKeyField').val('ybZu7fm_JKJTFwKEHfoZ7Q');
