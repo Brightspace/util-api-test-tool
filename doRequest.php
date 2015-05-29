@@ -36,7 +36,7 @@ $userId = $_POST['userId'];
 $userKey = $_POST['userKey'];
 $contentType = $_POST['contentType'];
 
-if($_FILES['fileInput']) {
+if(isset($_FILES['fileInput'])) {
     $uploaddir = 'uploads\\';
     $uploadfile = $uploaddir . basename($_FILES['fileInput']['name']);
     if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadfile)) {
@@ -110,7 +110,7 @@ $retArr = array(
     'statusCode' => $statusCode,
 );
 
-if($_FILES['fileInput']){
+if(isset($_FILES['fileInput'])){
     unlink(__DIR__.'\\'.$uploadfile);
 }    
 
