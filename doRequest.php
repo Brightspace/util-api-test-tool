@@ -100,7 +100,6 @@ while ($tryAgain && $numAttempts < 5) {
             $statusCode = "Redirect encountered (need to log in for this API call?) (HTTP status 302)";
         } else if($httpCode == 0) {
             $statusCode = "Error contacting server: " . curl_error($ch);
-        }
         } else {
             $statusCode = "{$errorArray[$responseCode]} (HTTP status $httpCode)";
         }
