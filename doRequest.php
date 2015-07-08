@@ -98,6 +98,9 @@ while ($tryAgain && $numAttempts < 5) {
             // This usually happens when a call is made non-anonymously prior to logging in.
             // The D2L server will send a redirect to the log in page.
             $statusCode = "Redirect encountered (need to log in for this API call?) (HTTP status 302)";
+        } else if($httpCode == 0) {
+            $statusCode = "Error contacting server: " . curl_error($ch);
+        }
         } else {
             $statusCode = "{$errorArray[$responseCode]} (HTTP status $httpCode)";
         }
