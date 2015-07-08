@@ -42,7 +42,7 @@ if(isset($_FILES['fileInput'])) {
     if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadfile)) {
         $fileName = $_POST['fileName'];
         $data = array($fileName =>'@'. $uploadfile);
-    } 
+    }
 }
 
 $authContextFactory = new D2LAppContextFactory();
@@ -64,7 +64,7 @@ $numAttempts = 1;
 
 while ($tryAgain && $numAttempts < 5) {
     $uri = $opContext->createAuthenticatedUri($_POST['apiRequest'], $_POST['apiMethod']);
-    curl_setopt($ch, CURLOPT_URL, $uri);    
+    curl_setopt($ch, CURLOPT_URL, $uri);
     switch($apiMethod) {
         case 'POST':
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -85,6 +85,9 @@ while ($tryAgain && $numAttempts < 5) {
             break;
     }
     $response = curl_exec($ch);
+    if (!$response) {
+        $response = '';
+    }
     $httpCode  = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
     $responseCode = $opContext->handleResult($response, $httpCode, $contentType);
@@ -94,7 +97,7 @@ while ($tryAgain && $numAttempts < 5) {
         $tryAgain = true;
     } else {
         $tryAgain = false;
-        if($httpCode == 302) {    
+        if($httpCode == 302) {
             // This usually happens when a call is made non-anonymously prior to logging in.
             // The D2L server will send a redirect to the log in page.
             $statusCode = "Redirect encountered (need to log in for this API call?) (HTTP status 302)";
@@ -114,8 +117,8 @@ $retArr = array(
 
 if(isset($_FILES['fileInput'])){
     unlink(__DIR__.'\\'.$uploadfile);
-}    
+}
 
-echo json_encode($retArr); 
+echo json_encode($retArr);
 
 ?>
