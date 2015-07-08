@@ -9,6 +9,7 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 
 ?>
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html>
 	<head>
 		<title>API Test Tool</title>
