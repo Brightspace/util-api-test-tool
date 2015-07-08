@@ -61,6 +61,15 @@ function sendRequest(postData, hasFile) {
     });
   }
 
+  function format(resp) {
+    try {
+      var json = JSON.parse(resp);
+      return JSON.stringify(json, null, '\t');
+    } catch(e) {
+      return resp;
+    }
+  }
+  
   $.ajax({
           type: 'post',
           url: "doRequest.php",
@@ -77,7 +86,7 @@ function sendRequest(postData, hasFile) {
               }
             }
             $('#statusField').val(output.statusCode);
-            $('#responseField').val(output.response);
+            $('#responseField').val(format(output.response));
             $("#responseField").removeClass('hidden');
             $("#responseFieldLabel").removeClass('hidden');
           },
