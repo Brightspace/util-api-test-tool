@@ -22,7 +22,7 @@ $errorArray = array(
     D2LUserContext::RESULT_INVALID_SIG => "Invalid signature.",
     D2LUserContext::RESULT_INVALID_TIMESTAMP => "There is a time skew between server and local machine.  Try again.",
     D2LUserContext::RESULT_NO_PERMISSION => "Not authorized to perform this operation.",
-    D2LUserContext::RESULT_UNKNOWN => "Unknown error occured"
+    D2LUserContext::RESULT_UNKNOWN => "Unknown error occurred"
 );
 
 $host = $_POST['host'];
