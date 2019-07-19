@@ -196,3 +196,37 @@ $(document).ready(function() {
   }
 
 });
+
+var passwordHideTimeouts = {};
+
+function setPasswordiness(btn, input, passwordy, which) {
+    clearTimeout(passwordHideTimeouts[which]);
+
+    if (passwordy) {
+        input.attr('type', 'password');
+
+        btn.val('Show')
+           .addClass('btn-danger')
+           .removeClass('btn-primary');
+    } else {
+        input.attr('type', 'text');
+
+        btn.val('Hide')
+           .addClass('btn-primary')
+           .removeClass('btn-danger');
+
+        // Automatically click hide after 5 seconds
+        passwordHideTimeouts[which] = setTimeout(
+            function() { setPasswordiness(btn, input, true) },
+            5000
+        );
+    }
+}
+
+function togglePasswordiness(which) {
+    var btn = $('#toggle-' + which + '-key');
+    var input = $('#' + which + 'KeyField');
+    var passwordy = btn.val() === 'Show';
+
+    setPasswordiness(btn, input, !passwordy, which);
+}
