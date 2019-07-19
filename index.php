@@ -81,9 +81,9 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 					<input class='form-control auth-field' name="userKeyField" type="password" id="userKeyField" value="<?php echo $userKey; ?>">
 				</div>
 				<div class="col-md-1">
+					<input id="toggle-user-key" class="btn btn-danger" type="button" value="Show" onclick="togglePasswordiness('user')"></input>
 					<input id='deauthBtn' class="btn btn-danger" type='button' name="authBtn" value='Deauthenticate' onclick='deAuthenticate()'>
 					<input id='manualAuthBtn' class="btn btn-primary hidden" type='button' name='authBtn' value='Save' onclick="authenticateFields()" >
-					<input id="toggle-user-key" class="btn btn-danger" type="button" value="Show" onclick="togglePasswordiness('user')"></input>
 				</div>
 			</div>
 			</form>
