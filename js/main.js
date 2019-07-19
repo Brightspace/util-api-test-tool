@@ -215,10 +215,10 @@ function setPasswordiness(btn, input, passwordy, which) {
            .addClass('btn-primary')
            .removeClass('btn-danger');
 
-        // Automatically click hide after 10 seconds
+        // Automatically click hide after 5 seconds
         passwordHideTimeouts[which] = setTimeout(
             function() { setPasswordiness(btn, input, !passwordy) },
-            10000
+            5000
         );
     }
 }
