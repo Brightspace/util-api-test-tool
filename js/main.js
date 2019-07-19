@@ -217,7 +217,7 @@ function setPasswordiness(btn, input, passwordy, which) {
 
         // Automatically click hide after 10 seconds
         passwordHideTimeouts[which] = setTimeout(
-            function() { setPasswordiness(btn, input, passwordy) },
+            function() { setPasswordiness(btn, input, !passwordy) },
             10000
         );
     }
