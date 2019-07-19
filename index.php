@@ -58,7 +58,10 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 				</div>
 				<label for='appKeyField' class='col-md-1 control-label'>App Key</label>
 				<div class="col-md-4">
-					<input class='form-control auth-field' name="appKeyField" type="text" id="appKeyField">
+					<input class='form-control auth-field' name="appKeyField" type="password" id="appKeyField">
+				</div>
+				<div class="col-md-1">
+					<input id="toggle-app-key" class="btn btn-danger" type="button" value="Show" onclick="togglePasswordiness('app')"></input>
 				</div>
 			</div>
 			<div id='authButtons' class="form-group">
@@ -75,11 +78,12 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 				</div>
 				<label for='userKeyField' class='col-md-1 control-label auth-field'>User Key</label>
 				<div class="col-md-4">
-					<input class='form-control auth-field' name="userKeyField" type="text" id="userKeyField" value="<?php echo $userKey; ?>">
+					<input class='form-control auth-field' name="userKeyField" type="password" id="userKeyField" value="<?php echo $userKey; ?>">
 				</div>
 				<div class="col-md-1">
 					<input id='deauthBtn' class="btn btn-danger" type='button' name="authBtn" value='Deauthenticate' onclick='deAuthenticate()'>
 					<input id='manualAuthBtn' class="btn btn-primary hidden" type='button' name='authBtn' value='Save' onclick="authenticateFields()" >
+					<input id="toggle-user-key" class="btn btn-danger" type="button" value="Show" onclick="togglePasswordiness('user')"></input>
 				</div>
 			</div>
 			</form>
