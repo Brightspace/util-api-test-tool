@@ -67,7 +67,8 @@ $opContext = $authContext->createUserContextFromHostSpec($hostSpec, $userId, $us
 $ch = curl_init();
 $options = array(
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_CAINFO => getcwd().'/cacert.pem'
+    CURLOPT_CAINFO => getcwd().'/cacert.pem',
+    CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4
     );
 
 curl_setopt_array($ch, $options);
