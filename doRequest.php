@@ -36,6 +36,19 @@ $userId = $_POST['userId'];
 $userKey = $_POST['userKey'];
 $contentType = $_POST['contentType'];
 
+$hosts = gethostbynamel($host);
+foreach ($hosts as $ip) {
+    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+    $retArr = array(
+        'response' => "",
+        'statusCode' => "Error contacting server: Failed to connect to ".$host." port ".$port,
+    );
+
+    echo json_encode($retArr);
+    exit();
+    }
+}
+
 if(isset($_FILES['fileInput'])) {
     $uploaddir = 'uploads\\';
     $uploadfile = $uploaddir . basename($_FILES['fileInput']['name']);
