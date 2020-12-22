@@ -20,7 +20,7 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 	<div class="container">
 		<div class="navbar navbar-default">
 	     	<div class="navbar-header">
-	          <a class="navbar-brand" style='color:black;'>API Test Tool</a>
+	          <a class="navbar-brand" style='color:black;'>API Test Tool - Rich</a>
 	        </div> 	
 	        <div class="navbar-collapse">
 	          <form class='navbar-form navbar-right col-md-12'>
