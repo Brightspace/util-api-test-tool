@@ -28,6 +28,7 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           role-to-assume: "arn:aws:iam::084374970894:role/ApiTestToolPipeline"
           role-duration-seconds: 3600
+          role-skip-session-tagging: true
           aws-region: us-east-1
 
       - name: Install packages
