@@ -36,8 +36,8 @@ jobs:
       - name: Npm Build
         run: npm run build
 
-      - name: Cdk Diff
+      - name: Cdk Diff ApiTestToolSetupStack
         run: npx cdk diff ApiTestToolSetupStack  
 
-      - name: Cdk Diff
+      - name: Cdk Diff ApiTestToolAppStack
         run: npx cdk diff ApiTestToolAppStack      
