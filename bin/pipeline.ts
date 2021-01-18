@@ -7,14 +7,14 @@ const app = new cdk.App();
 new SetupStack(app, "ApiTestToolSetupStack", {
     env: { 
         account: process.env.CDK_DEFAULT_ACCOUNT, 
-        region: process.env.CDK_DEFAULT_REGION
+        region: "us-east-1"
     }
 });
   
 const appStack = new AppStack(app, "ApiTestToolAppStack", {
     env: { 
         account: process.env.CDK_DEFAULT_ACCOUNT, 
-        region: process.env.CDK_DEFAULT_REGION
+        region: "us-east-1"
     }
 });
 
