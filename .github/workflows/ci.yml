@@ -31,7 +31,6 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
-
       - name: Install packages
         run: |
           npm install typescript
