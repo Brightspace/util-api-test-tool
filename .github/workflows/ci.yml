@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: checkout@v2
-        uses: actions/checkout@v2
+        uses: Brightspace/third-party-actions@actions/checkout
           
       # see: https://github.com/aws-actions/configure-aws-credentials
       - name: Assume role
