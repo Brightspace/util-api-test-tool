@@ -80,8 +80,6 @@ export class AppStack extends cdk.Stack {
       }]
     });
 
-    logBucket.addLifecycleRule
-
     fargateService.loadBalancer.logAccessLogs( logBucket );
 
     this.urlOutput = new cdk.CfnOutput(this, 'LoadBalancerDNS', { value: fargateService.loadBalancer.loadBalancerDnsName });
