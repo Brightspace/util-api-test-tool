@@ -10,7 +10,9 @@ import * as route53 from '@aws-cdk/aws-route53';
 export class AppStack extends cdk.Stack {
 
   public readonly urlOutput: cdk.CfnOutput;
-
+  private readonly hostzone: "desire2learnvalence.com";
+  private readonly domainName: "apitesttool.desire2learnvalence.com";
+  
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -21,21 +23,21 @@ export class AppStack extends cdk.Stack {
     );
 
     const vpc = new ec2.Vpc(this, "ApiTestToolVpc", {
-      maxAzs: 2// Default is all AZs in region
+      maxAzs: 2 // Default is all AZs in region
     });
 
     const cluster = new ecs.Cluster(this, "ApiTestToolCluster", {
       vpc: vpc
     });
 
-    /*const hostedZone = route53.HostedZone.fromLookup( this, "HostedZone", {
-      domainName : "desire2learnvalence.com"
+    const hostedZone = route53.HostedZone.fromLookup( this, "HostedZone", {
+      domainName : this.hostzone
     });
 
     const certificate = new cert.Certificate(this, 'Certificate', {
-      domainName : "apitesttool2.desire2learnvalence.com",
+      domainName : this.domainName,
       validation: cert.CertificateValidation.fromDns(hostedZone),
-    });*/
+    });
 
     // Create a load-balanced Fargate service and make it public
     const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(this, "ApiTestToolFargateService", {
@@ -50,9 +52,9 @@ export class AppStack extends cdk.Stack {
       memoryLimitMiB: 2048, // Default is 512
       publicLoadBalancer: true, // Default is false,
       redirectHTTP: false, 
-      //domainName: "apitesttool2.desire2learnvalence.com",	//string	The domain name for the service, e.g. "api.example.com.".
-      //domainZone: hostedZone,
-      //certificate: certificate
+      domainName: this.domainName,
+      domainZone: hostedZone,
+      certificate: certificate
     });
 
     const scaling = fargateService.service.autoScaleTaskCount({ 
