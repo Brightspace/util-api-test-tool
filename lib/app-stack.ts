@@ -28,14 +28,14 @@ export class AppStack extends cdk.Stack {
       vpc: vpc
     });
 
-    /*const hostedZone = route53.HostedZone.fromLookup( this, "HostedZone", {
-      domainName : "desire2learnvalence.com/"
+    const hostedZone = route53.HostedZone.fromLookup( this, "HostedZone", {
+      domainName : "desire2learnvalence.com"
     });
 
     const certificate = new cert.Certificate(this, 'Certificate', {
-      domainName : "apitesttool.desire2learnvalence.com",
+      domainName : "apitesttool2.desire2learnvalence.com",
       validation: cert.CertificateValidation.fromDns(hostedZone),
-    });*/
+    });
 
     // Create a load-balanced Fargate service and make it public
     const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(this, "ApiTestToolFargateService", {
@@ -50,9 +50,9 @@ export class AppStack extends cdk.Stack {
       memoryLimitMiB: 2048, // Default is 512
       publicLoadBalancer: true, // Default is false,
       redirectHTTP: false, 
-      /*domainName: "apitesttool.desire2learnvalence.com",	//string	The domain name for the service, e.g. "api.example.com.".
+      domainName: "apitesttool2.desire2learnvalence.com",	//string	The domain name for the service, e.g. "api.example.com.".
       domainZone: hostedZone,
-      certificate: certificate*/
+      certificate: certificate
     });
 
     const scaling = fargateService.service.autoScaleTaskCount({ 
