@@ -1,0 +1,46 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ci
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events not on master
+on:
+  push:
+    branches:
+      - '**'
+      - '!master'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout@v2
+        uses: Brightspace/third-party-actions@actions/checkout
+          
+      # see: https://github.com/aws-actions/configure-aws-credentials
+      - name: Assume role
+        uses: Brightspace/third-party-actions@aws-actions/configure-aws-credentials
+        with:
+          aws-region: us-east-1                 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          role-duration-seconds: 3600
+          role-skip-session-tagging: true
+
+      - name: Install packages
+        run: |
+          npm install typescript
+          npm install aws-cdk@1.80.0
+          npm i
+
+      - name: Npm Build
+        run: npm run build
+
+      - name: Cdk Diff ApiTestToolSetupStack
+        run: npx cdk diff ApiTestToolSetupStack  
+
+      - name: Cdk Diff ApiTestToolAppStack
+        run: npx cdk diff ApiTestToolAppStack      
