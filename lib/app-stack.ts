@@ -67,7 +67,7 @@ export class AppStack extends cdk.Stack {
     });
 
     const logBucket = new s3.Bucket(this, 'S3AccessLogs', {
-      bucketName : "api-test-tool-access-logs",
+      bucketName : "api-test-tool-access-logs2",
       lifecycleRules: [{
         expiration: cdk.Duration.days(365),
         transitions: [{
@@ -79,6 +79,8 @@ export class AppStack extends cdk.Stack {
         }]
       }]
     });
+
+    logBucket.addLifecycleRule
 
     fargateService.loadBalancer.logAccessLogs( logBucket );
 
