@@ -49,7 +49,7 @@ export class AppStack extends cdk.Stack {
       )},
       memoryLimitMiB: 2048, // Default is 512
       publicLoadBalancer: true, // Default is false,
-      redirectHTTP: false, 
+      redirectHTTP: true, 
       domainName: "apitesttool.desire2learnvalence.com",	//string	The domain name for the service, e.g. "api.example.com.".
       domainZone: hostedZone,
       certificate: certificate
