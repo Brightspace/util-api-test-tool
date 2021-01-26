@@ -33,7 +33,7 @@ export class AppStack extends cdk.Stack {
     });
 
     const certificate = new cert.Certificate(this, 'Certificate', {
-      domainName : "apitesttool.desire2learnvalence.com",
+      domainName : "apitesttool2.desire2learnvalence.com",
       validation: cert.CertificateValidation.fromDns(hostedZone),
     });
 
