@@ -43,4 +43,23 @@ jobs:
         run: npx cdk diff ApiTestToolSetupStack  
 
       - name: Cdk Diff ApiTestToolAppStack
-        run: npx cdk diff ApiTestToolAppStack      
+        run: npx cdk diff ApiTestToolAppStack
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: api_test_tool_repository
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # cd ..
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./src
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Log out of Amazon ECR
+        if: always()
+        run: docker logout ${{ steps.login-ecr.outputs.registry }}

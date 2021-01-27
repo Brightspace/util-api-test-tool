@@ -36,10 +36,10 @@ jobs:
       - name: Npm Build
         run: npm run build
 
-      - name: Cdk Diff
+      - name: Cdk Diff ApiTestToolSetupStack
         run: npx cdk diff ApiTestToolSetupStack
         
-      - name: Cdk Deploy        
+      - name: Cdk Deploy ApiTestToolSetupStack
         run: npx cdk deploy ApiTestToolSetupStack --require-approval never  
 
       # see: https://github.com/aws-actions/amazon-ecr-login
@@ -62,10 +62,10 @@ jobs:
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
 
-      - name: Cdk Diff
+      - name: Cdk Diff ApiTestToolAppStack
         run: npx cdk diff ApiTestToolAppStack
       
-      - name: Cdk Deploy Application
+      - name: Cdk Deploy ApiTestToolAppStack
         run: npx cdk deploy ApiTestToolAppStack --require-approval never
         env:
           IMAGE_TAG: ${{ github.sha }}
