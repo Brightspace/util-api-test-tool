@@ -82,6 +82,8 @@ export class AppStack extends cdk.Stack {
 
     fargateService.loadBalancer.logAccessLogs( logBucket );
 
+    fargateService.loadBalancer.setAttribute( "routing.http.drop_invalid_header_fields.enabled", "true" );
+
     this.urlOutput = new cdk.CfnOutput(this, 'LoadBalancerDNS', { value: fargateService.loadBalancer.loadBalancerDnsName });
 
   }
