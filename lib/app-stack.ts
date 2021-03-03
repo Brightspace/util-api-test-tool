@@ -37,9 +37,8 @@ export class AppStack extends cdk.Stack {
       validation: cert.CertificateValidation.fromDns(hostedZone),
     });
 
-    // Create a load-balanced Fargate service and make it public
     const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(this, "ApiTestToolFargateService", {
-      cluster: cluster, // Required
+      cluster: cluster,
       cpu: 512, // Default is 256
       desiredCount: 2, // Default is 1
       taskImageOptions: { 
@@ -47,12 +46,13 @@ export class AppStack extends cdk.Stack {
             repository, 
             process.env.IMAGE_TAG
       )},
-      memoryLimitMiB: 2048, // Default is 512
-      publicLoadBalancer: true, // Default is false,
+      memoryLimitMiB: 2048,
+      publicLoadBalancer: true,
       redirectHTTP: true, 
-      domainName: "apitesttool.desire2learnvalence.com",	//string	The domain name for the service, e.g. "api.example.com.".
+      domainName: "apitesttool.desire2learnvalence.com",
       domainZone: hostedZone,
       certificate: certificate
+      // Todo: Update SSLPolicy https://github.com/aws/aws-cdk/issues/11841
     });
 
     const scaling = fargateService.service.autoScaleTaskCount({ 
