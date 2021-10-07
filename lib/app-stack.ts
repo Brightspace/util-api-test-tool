@@ -66,19 +66,13 @@ export class AppStack extends cdk.Stack {
       scaleOutCooldown: cdk.Duration.seconds(60)
     });
 
-    const logBucket = new s3.Bucket(this, 'S3AccessLogs', {
-      bucketName : "api-test-tool-access-logs2",
-      lifecycleRules: [{
-        expiration: cdk.Duration.days(365),
-        transitions: [{
-            storageClass: s3.StorageClass.INFREQUENT_ACCESS,
-            transitionAfter: cdk.Duration.days(30)
-        },{
-            storageClass: s3.StorageClass.GLACIER,
-            transitionAfter: cdk.Duration.days(90)
-        }]
-      }]
-    });
+    const region = 'us-east-1';
+    const local = {
+      lb_log_type: 'alb',
+      lb_log_env: 'prd'
+    }
+    const lb_log_bucket = `d2l-${local.lb_log_type}-logs-ingestion-${local.lb_log_env}-${region}`;
+    const logBucket =s3.Bucket.fromBucketName(this, 'ALBLogBuck', lb_log_bucket);
 
     fargateService.loadBalancer.logAccessLogs( logBucket );
 
