@@ -66,13 +66,13 @@ export class AppStack extends cdk.Stack {
       scaleOutCooldown: cdk.Duration.seconds(60)
     });
 
-    const region = 'us-east-1';
+    const region = props?.env?.region;
     const local = {
       lb_log_type: 'alb',
       lb_log_env: 'prd'
     }
     const lb_log_bucket = `d2l-${local.lb_log_type}-logs-ingestion-${local.lb_log_env}-${region}`;
-    const logBucket =s3.Bucket.fromBucketName(this, 'ALBLogBuck', lb_log_bucket);
+    const logBucket = s3.Bucket.fromBucketName(this, 'ALBLogBuck', lb_log_bucket);
 
     fargateService.loadBalancer.logAccessLogs( logBucket );
 
