@@ -84,7 +84,7 @@ export class AppStack extends cdk.Stack {
       domainName: props.fargateDomainName,
       domainZone: hostedZone,
       certificate: certificate,
-      //sslPolicy: SslPolicy.TLS12_EXT
+      sslPolicy: SslPolicy.FORWARD_SECRECY_TLS12
     });
 
     const scaling = fargateService.service.autoScaleTaskCount({
