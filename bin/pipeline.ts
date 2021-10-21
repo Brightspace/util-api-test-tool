@@ -16,8 +16,8 @@ const prdAppStackProps: AppStackProps = {
 
 const devAppStackProps: AppStackProps = {
     env: {
-        //account: "",
-        region: "us-east-2",
+        account: "111111111111",
+        region: "ca-central-1",
     },
     hostedZoneDomainName: "lti.dev.brightspace.com",
     certificateDomain: "apitesttool.lti.dev.brightspace.com",
