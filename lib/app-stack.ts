@@ -6,8 +6,6 @@ import * as ecs_patterns from "@aws-cdk/aws-ecs-patterns";
 import * as ecr from "@aws-cdk/aws-ecr";
 import * as cert from '@aws-cdk/aws-certificatemanager';
 import * as route53 from '@aws-cdk/aws-route53';
-import { SslPolicy } from '@aws-cdk/aws-elasticloadbalancingv2';
-
 
 export interface AppStackProps extends cdk.StackProps {
   /**
@@ -83,8 +81,7 @@ export class AppStack extends cdk.Stack {
       redirectHTTP: true,
       domainName: props.fargateDomainName,
       domainZone: hostedZone,
-      certificate: certificate,
-      //sslPolicy: SslPolicy.TLS12_EXT
+      certificate: certificate
     });
 
     const scaling = fargateService.service.autoScaleTaskCount({
