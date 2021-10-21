@@ -33,7 +33,6 @@ jobs:
       - name: Install packages
         run: |
           npm install typescript
-          npm install aws-cdk@1.80.0
           npm i
 
       - name: Npm Build
