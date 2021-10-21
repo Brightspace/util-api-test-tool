@@ -8,7 +8,6 @@ import * as cert from '@aws-cdk/aws-certificatemanager';
 import * as route53 from '@aws-cdk/aws-route53';
 import { SslPolicy } from '@aws-cdk/aws-elasticloadbalancingv2';
 
-
 export interface AppStackProps extends cdk.StackProps {
   /**
    * hosted zone domain name
