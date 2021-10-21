@@ -5,12 +5,12 @@ import { SetupStack } from '../lib/setup-stack';
 const prdAppStackProps: AppStackProps = {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
-        region: "us-east-1",
+        region: "us-east-1"
     },
     hostedZoneDomainName: "desire2learnvalence.com",
     certificateDomain: "apitesttool.desire2learnvalence.com",
     fargateDomainName: "apitesttool.desire2learnvalence.com",
-    elbLogS3BucketName: "api-test-tool-access-logs2",
+    elbLogTargetEnvironment: "prd",
     imageTag: process.env.IMAGE_TAG
 }
 
@@ -22,7 +22,7 @@ const devAppStackProps: AppStackProps = {
     hostedZoneDomainName: "lti.dev.brightspace.com",
     certificateDomain: "apitesttool.lti.dev.brightspace.com",
     fargateDomainName: "apitesttool.lti.dev.brightspace.com",
-    elbLogS3BucketName: "api-test-tool-access-logs-dev6",
+    elbLogTargetEnvironment: "dev",
     imageTag: "test1"
 }
 
