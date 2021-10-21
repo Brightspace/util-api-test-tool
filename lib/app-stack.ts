@@ -30,14 +30,13 @@ export interface AppStackProps extends cdk.StackProps {
   /**
    * imageTag
    */
-   readonly imageTag?: string;
+  readonly imageTag?: string;
 
   /**
    * s3 elb bucket logs
-   * @Default: "api-test-tool-access-logs2"
+   * @Default: "prd or dev"
    */
-  readonly elbLogS3BucketName: string;
-
+  readonly elbLogTargetEnvironment: string;
 }
 
 export class AppStack extends cdk.Stack {
@@ -98,19 +97,10 @@ export class AppStack extends cdk.Stack {
       scaleOutCooldown: cdk.Duration.seconds(60)
     });
 
-    const logBucket = new s3.Bucket(this, 'S3AccessLogs', {
-      bucketName : props.elbLogS3BucketName,
-      lifecycleRules: [{
-        expiration: cdk.Duration.days(365),
-        transitions: [{
-            storageClass: s3.StorageClass.INFREQUENT_ACCESS,
-            transitionAfter: cdk.Duration.days(30)
-        },{
-            storageClass: s3.StorageClass.GLACIER,
-            transitionAfter: cdk.Duration.days(90)
-        }]
-      }]
-    });
+    const region = props?.env?.region;
+    const lb_log_bucket = `d2l-alb-logs-ingestion-${props.elbLogTargetEnvironment}-${region}`;
+
+    const logBucket = s3.Bucket.fromBucketName(this, 'ALBLogBuck', lb_log_bucket);
 
     fargateService.loadBalancer.logAccessLogs( logBucket );
 
