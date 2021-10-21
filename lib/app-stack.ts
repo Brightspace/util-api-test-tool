@@ -7,16 +7,45 @@ import * as ecr from "@aws-cdk/aws-ecr";
 import * as cert from '@aws-cdk/aws-certificatemanager';
 import * as route53 from '@aws-cdk/aws-route53';
 
+export interface AppStackProps extends cdk.StackProps {
+  /**
+   * hosted zone domain name
+   * "desire2learnvalence.com"
+   */
+  readonly hostedZoneDomainName: string;
+  /**
+   * certificate domain name
+   * "apitesttool.desire2learnvalence.com"
+   */
+  readonly certificateDomain: string;
+
+  /**
+   * fargateDomainName
+   * @Default: "apitesttool.desire2learnvalence.com"
+   */
+  readonly fargateDomainName: string;
+
+  /**
+   * imageTag
+   */
+   readonly imageTag?: string;
+
+  /**
+   * s3 elb bucket logs
+   * @Default: "api-test-tool-access-logs2"
+   */
+  readonly elbLogS3BucketName: string;
+
+}
+
 export class AppStack extends cdk.Stack {
 
-  public readonly urlOutput: cdk.CfnOutput;
-
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: cdk.Construct, id: string, props: AppStackProps) {
     super(scope, id, props);
 
     // ECR repository
-    const repository = ecr.Repository.fromRepositoryName(this, 
-      "RepositoryId", 
+    const repository = ecr.Repository.fromRepositoryName(this,
+      "RepositoryId",
       "api_test_tool_repository"
     );
 
@@ -29,11 +58,11 @@ export class AppStack extends cdk.Stack {
     });
 
     const hostedZone = route53.HostedZone.fromLookup( this, "HostedZone", {
-      domainName : "desire2learnvalence.com"
+      domainName: props.hostedZoneDomainName
     });
 
     const certificate = new cert.Certificate(this, 'Certificate', {
-      domainName : "apitesttool.desire2learnvalence.com",
+      domainName: props.certificateDomain,
       validation: cert.CertificateValidation.fromDns(hostedZone),
     });
 
@@ -42,22 +71,22 @@ export class AppStack extends cdk.Stack {
       cluster: cluster, // Required
       cpu: 512, // Default is 256
       desiredCount: 2, // Default is 1
-      taskImageOptions: { 
+      taskImageOptions: {
         image: ecs.ContainerImage.fromEcrRepository(
-            repository, 
-            process.env.IMAGE_TAG
+            repository,
+            props.imageTag
       )},
       memoryLimitMiB: 2048, // Default is 512
       publicLoadBalancer: true, // Default is false,
-      redirectHTTP: true, 
-      domainName: "apitesttool.desire2learnvalence.com",	//string	The domain name for the service, e.g. "api.example.com.".
+      redirectHTTP: true,
+      domainName: props.fargateDomainName,
       domainZone: hostedZone,
       certificate: certificate
     });
 
-    const scaling = fargateService.service.autoScaleTaskCount({ 
+    const scaling = fargateService.service.autoScaleTaskCount({
       maxCapacity: 3,
-      minCapacity: 2 
+      minCapacity: 2
     });
 
     scaling.scaleOnCpuUtilization('CpuScaling', {
@@ -67,7 +96,7 @@ export class AppStack extends cdk.Stack {
     });
 
     const logBucket = new s3.Bucket(this, 'S3AccessLogs', {
-      bucketName : "api-test-tool-access-logs2",
+      bucketName : props.elbLogS3BucketName,
       lifecycleRules: [{
         expiration: cdk.Duration.days(365),
         transitions: [{
@@ -84,7 +113,8 @@ export class AppStack extends cdk.Stack {
 
     fargateService.loadBalancer.setAttribute( "routing.http.drop_invalid_header_fields.enabled", "true" );
 
-    this.urlOutput = new cdk.CfnOutput(this, 'LoadBalancerDNS', { value: fargateService.loadBalancer.loadBalancerDnsName });
+    const urlOutput = new cdk.CfnOutput(this, 'LoadBalancerDNS', { value: fargateService.loadBalancer.loadBalancerDnsName });
+    console.log(urlOutput);
 
   }
 }
