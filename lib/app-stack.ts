@@ -1,12 +1,8 @@
-import * as cdk from '@aws-cdk/core';
-import * as ec2 from "@aws-cdk/aws-ec2";
-import * as ecs from "@aws-cdk/aws-ecs";
-import * as s3 from "@aws-cdk/aws-s3";
-import * as ecs_patterns from "@aws-cdk/aws-ecs-patterns";
-import * as ecr from "@aws-cdk/aws-ecr";
-import * as cert from '@aws-cdk/aws-certificatemanager';
-import * as route53 from '@aws-cdk/aws-route53';
-import { SslPolicy } from '@aws-cdk/aws-elasticloadbalancingv2';
+import * as cdk from 'aws-cdk-lib';
+import { aws_s3 as s3, aws_ec2 as ec2, aws_ecs as ecs } from 'aws-cdk-lib';
+import { aws_ecs_patterns as ecs_patterns, aws_ecr as ecr } from 'aws-cdk-lib';
+import { aws_certificatemanager as cert, aws_route53 as route53 } from 'aws-cdk-lib';
+import { SslPolicy } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
 export interface AppStackProps extends cdk.StackProps {
   /**
@@ -40,7 +36,7 @@ export interface AppStackProps extends cdk.StackProps {
 
 export class AppStack extends cdk.Stack {
 
-  constructor(scope: cdk.Construct, id: string, props: AppStackProps) {
+  constructor(scope: cdk.App, id: string, props: AppStackProps) {
     super(scope, id, props);
 
     // ECR repository

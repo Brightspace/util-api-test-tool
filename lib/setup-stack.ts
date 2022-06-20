@@ -1,9 +1,9 @@
-import * as cdk from '@aws-cdk/core';
-import * as ecr from "@aws-cdk/aws-ecr";
+import * as cdk from 'aws-cdk-lib';
+import { aws_ecr as ecr } from 'aws-cdk-lib';
 
 export class SetupStack extends cdk.Stack {
 
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     // ECR repository

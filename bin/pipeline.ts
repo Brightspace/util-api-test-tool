@@ -1,4 +1,4 @@
-import * as cdk from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib';
 import { AppStack, AppStackProps } from '../lib/app-stack';
 import { SetupStack } from '../lib/setup-stack';
 
@@ -28,10 +28,10 @@ const devAppStackProps: AppStackProps = {
 
 const app = new cdk.App();
 
-new SetupStack(app, "ApiTestToolSetupStack", prdAppStackProps as cdk.StackProps );
+new SetupStack(app, "ApiTestToolSetupStack", prdAppStackProps );
 new AppStack(app, "ApiTestToolAppStack", prdAppStackProps );
 
-new SetupStack(app, "ApiTestToolSetupStack-Dev", devAppStackProps as cdk.StackProps );
+new SetupStack(app, "ApiTestToolSetupStack-Dev", devAppStackProps );
 new AppStack(app, "ApiTestToolAppStack-Dev", devAppStackProps );
 
 app.synth();
