@@ -65,8 +65,8 @@ export class AppStack extends cdk.Stack {
     // Create a load-balanced Fargate service and make it public
     const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(this, "ApiTestToolFargateService", {
       cluster: cluster, // Required
-      cpu: 512, // Default is 256
-      desiredCount: 2, // Default is 1
+      cpu: 256, // Default is 256
+      desiredCount: 1, // Default is 1
       taskImageOptions: {
         image: ecs.ContainerImage.fromEcrRepository(
             repository,
@@ -83,7 +83,7 @@ export class AppStack extends cdk.Stack {
 
     const scaling = fargateService.service.autoScaleTaskCount({
       maxCapacity: 3,
-      minCapacity: 2
+      minCapacity: 1
     });
 
     scaling.scaleOnCpuUtilization('CpuScaling', {
