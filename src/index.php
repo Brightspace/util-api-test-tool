@@ -32,7 +32,6 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 				</div>
 				<button class="btn btn-success" id='updateProfiles' type='button' onClick="saveProfile()">Save</button>
 				<button class="btn btn-danger" id='rmProfile'> <span class="close">&times;</span></button>
-				<button class="btn btn-default auth-field" name='authBtn' type="button" name="resetProfile" id="resetButton" onClick="loadDefaults()">Load Defaults</button>
 	          </form>
 	        </div>
 	      </div>

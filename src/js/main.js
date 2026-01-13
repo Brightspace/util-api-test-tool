@@ -181,8 +181,6 @@ $(document).ready(function() {
   if ((document.getElementById("appIDField").value == '' ) && (document.getElementById("appKeyField").value == '')) {
     if (localStorage.getItem('lastProfile') == 'authProfile') {
       loadProfile('authProfile');
-    } else {
-      loadDefaults();
     }
   }
 
