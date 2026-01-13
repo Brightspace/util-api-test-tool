@@ -66,7 +66,6 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 			</div>
 			<div id='authButtons' class="form-group">
 				<div class='col-md-offset-1' id='userDiv'>
-					<p class="help-block" id='authNotice'> Note: To authenticate against the test server, you can user username "DevCoPStudent" and password "/10T41.Vf\0w~=O". Members can visit the <a href="https://community.brightspace.com/devcop/devenvironment">Dev CoP</a> to access additional accounts. </p> 
 					<input class="btn btn-primary " type="submit" name="authBtn" value="Authenticate" id="authenticateBtn">
 					<input class="btn btn-default" type="button" id="manualBtn" value="Manually set credentials" name='authBtn' onclick="setCredentials()">
 				</div>
