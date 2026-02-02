@@ -105,15 +105,3 @@ function removeProfile(profileName) {
   localStorage.setItem('userProfiles', p.toString());
 }
 
-function loadDefaults() {
-  var defaultProfile = "New Profile";
-  $('#hostField').val("devcop.brightspace.com");
-  $('#portField').val("443");
-  $('#appIDField').val('31brpbcCLsVim_K4jJ8vzw');
-  $('#appKeyField').val('sagYSTT_HOts39qrGQTFWA');
-  $('#schemeField').prop('checked', true);
-  $('#profileNameField').parent().show();
-  $('#rmProfile').hide();
-  $("#userProfiles").val(defaultProfile);
-  localStorage.setItem('lastProfile', defaultProfile);
-}
