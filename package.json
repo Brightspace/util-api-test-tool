@@ -10,8 +10,8 @@
     "cdk": "cdk"
   },
   "dependencies": {
-    "aws-cdk": "^2.162.1",
-    "aws-cdk-lib": "^2.162.1",
+    "aws-cdk": "^2.1105.0",
+    "aws-cdk-lib": "^2.238.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3"
   },
