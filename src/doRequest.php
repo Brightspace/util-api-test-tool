@@ -50,7 +50,7 @@ foreach ($hosts as $ip) {
 }
 
 if(isset($_FILES['fileInput'])) {
-    $uploaddir = 'uploads\\';
+    $uploaddir = 'uploads' . DIRECTORY_SEPARATOR;
     $uploadfile = $uploaddir . basename($_FILES['fileInput']['name']);
     if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadfile)) {
         $fileName = $_POST['fileName'];
@@ -130,7 +130,7 @@ $retArr = array(
 );
 
 if(isset($_FILES['fileInput'])){
-    unlink(__DIR__.'\\'.$uploadfile);
+    unlink(__DIR__ . DIRECTORY_SEPARATOR . $uploadfile);
 }
 
 echo json_encode($retArr);
