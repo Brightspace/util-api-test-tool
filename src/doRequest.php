@@ -49,15 +49,6 @@ foreach ($hosts as $ip) {
     }
 }
 
-if(isset($_FILES['fileInput'])) {
-    $uploaddir = 'uploads\\';
-    $uploadfile = $uploaddir . basename($_FILES['fileInput']['name']);
-    if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadfile)) {
-        $fileName = $_POST['fileName'];
-        $data = array($fileName =>'@'. $uploadfile);
-    }
-}
-
 $authContextFactory = new D2LAppContextFactory();
 $authContext = $authContextFactory->createSecurityContext($appId, $appKey);
 $hostSpec = new D2LHostSpec($host, $port, $scheme);
@@ -128,10 +119,6 @@ $retArr = array(
     'response' => $response,
     'statusCode' => $statusCode,
 );
-
-if(isset($_FILES['fileInput'])){
-    unlink(__DIR__.'\\'.$uploadfile);
-}
 
 echo json_encode($retArr);
 
