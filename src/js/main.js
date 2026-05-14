@@ -18,10 +18,7 @@ function doAPIRequest() {
     var appKey = $('#appKeyField').val().trim();
     var userKey = $('#userKeyField').val().trim();
     var userId = $('#userIDField').val().trim();
-    var contentType = $('#contentType').val().trim();
-    var uploadFile = document.getElementById('fileInput').files ? 
-           document.getElementById('fileInput').files[0] : false;
-
+    var contentType = 'application/json';
     var data = {
           host: host,
           port: port,
@@ -36,30 +33,11 @@ function doAPIRequest() {
           userId: userId,
           userKey: userKey 
       };
-
-    if (uploadFile) {
-      var ajaxData = new FormData();
-      var fileName = document.getElementById('paramField').value;
-      ajaxData.append("fileInput", uploadFile );
-      ajaxData.append("fileName", fileName );
-      for(index in data) { 
-        ajaxData.append(index, data[index] );
-      }
-      sendRequest(ajaxData, true);
-    } else {
-      sendRequest(data, false);
-    } 
+    sendRequest(data);
   }
 }
 
-function sendRequest(postData, hasFile) {
-  if (hasFile){
-    $.ajaxSetup({
-      cache: false,
-      processData: false,
-      contentType: false,
-    });
-  }
+function sendRequest(postData) {
 
   function format(resp) {
     try {

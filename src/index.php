@@ -92,7 +92,11 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 						<input class="btn btn-default" type="button" value="Get Versions" onclick='exampleGetVersions()'>
 						<input class="btn btn-default" type="button" value="WhoAmI" onclick='exampleWhoAmI()'>
 						<input class="btn btn-default" type="button" value="Create User" onclick='exampleCreateUser()'>
-			  </div> 
+			  </div>
+			  <div class="form-group">
+					<label>Note:</label>
+					<label>Uploading files is not supported by this application.</label>
+				</div>
 				<div class="form-group">
 					<label for='contentType'>Request</label>
 					<input class='form-control' name="actionField" type="text" value="" id="actionField">
@@ -111,20 +115,13 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 					  <label><input type="radio" name="method" id="DELETEField" value="DELETE" onclick='hideData()'>Delete</label>
 					</div>
 			  </div>
-			  	<div class="post-forms hidden form-group ">
-			   		<label for="exampleInputFile">File input</label>
-			    	<input type="file" name='fileInput' id="fileInput">
-			   		<a class='btn-link' onclick="resetFormElem($('#fileInput'))">Clear file</a>
-					<input class='form-control' name="paramField" type="text" placeholder="File Param Name" id="paramField">
-  				</div>
+			  	<!-- File upload fields removed -->
 			  <div class="post-forms form-group hidden">
 					<label for='contentType' class='control-label pull-left'>Content Type</label>
-					<select id='contentType' class='form-control'>
-						<option>application/json</option>
-						<option>multipart/form-data</option>
-						<option>multipart/mixed</option>
+					<select id='contentType' class='form-control' disabled>
+						<option selected>application/json</option>
 					</select>
-				</div>  
+				</div>
 
 			  <div class="post-forms form-group hidden">
 			  	<label for='contentType' class='control-label'>Data</label>
