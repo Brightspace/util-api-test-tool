@@ -92,7 +92,11 @@ if((isset($_GET['x_a'])) && (isset($_GET['x_b']))){
 						<input class="btn btn-default" type="button" value="Get Versions" onclick='exampleGetVersions()'>
 						<input class="btn btn-default" type="button" value="WhoAmI" onclick='exampleWhoAmI()'>
 						<input class="btn btn-default" type="button" value="Create User" onclick='exampleCreateUser()'>
-			  </div> 
+			  </div>
+			  <div class="form-group">
+					<label>Note:</label>
+					<label>Uploading files is not supported by this application.</label>
+				</div>
 				<div class="form-group">
 					<label for='contentType'>Request</label>
 					<input class='form-control' name="actionField" type="text" value="" id="actionField">
