@@ -13,7 +13,7 @@
     "aws-cdk": "^2",
     "aws-cdk-lib": "^2",
     "ts-node": "^10.9.2",
-    "typescript": "^7"
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
     "constructs": "^10.3.0"
