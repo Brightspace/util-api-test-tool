@@ -16,19 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout@v2
+      - name: Check out code
         uses: Brightspace/third-party-actions@actions/checkout
-          
-      # see: https://github.com/aws-actions/configure-aws-credentials
-      - name: Assume role
-        uses: Brightspace/third-party-actions@aws-actions/configure-aws-credentials
+      - name: Setup Node
+        uses: Brightspace/setup-node@main
         with:
-          aws-region: us-east-1                 
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          role-duration-seconds: 3600
-          role-skip-session-tagging: true
+          node-version: 24
+          d2l-registry-token: ${{ secrets.D2L_PACKAGE_REGISTRY_AUTH_TOKEN }}
 
       - name: Install packages
         run: |
