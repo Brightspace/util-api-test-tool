@@ -32,7 +32,6 @@ jobs:
 
       - name: Install packages
         run: |
-          npm install typescript
           npm i
 
       - name: Npm Build
