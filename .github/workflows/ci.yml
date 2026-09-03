@@ -16,10 +16,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout@v2
+      - name: Check out code
         uses: Brightspace/third-party-actions@actions/checkout
-          
-      # see: https://github.com/aws-actions/configure-aws-credentials
+      - name: Setup Node
+        uses: Brightspace/setup-node@main
+        with:
+          node-version: 24
+          d2l-registry-token: ${{ secrets.D2L_PACKAGE_REGISTRY_AUTH_TOKEN }}
+
+      - name: Install packages
+        run: |
+          npm i
+
+      - name: Npm Build
+        run: npm run build
+
       - name: Assume role
         uses: Brightspace/third-party-actions@aws-actions/configure-aws-credentials
         with:
@@ -29,15 +40,7 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           role-duration-seconds: 3600
           role-skip-session-tagging: true
-
-      - name: Install packages
-        run: |
-          npm install typescript
-          npm i
-
-      - name: Npm Build
-        run: npm run build
-
+          
       - name: Cdk Diff ApiTestToolSetupStack
         run: npx cdk diff ApiTestToolSetupStack  
 
