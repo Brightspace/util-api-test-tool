@@ -15,6 +15,15 @@ jobs:
     steps:
       - name: checkout@v2
         uses: Brightspace/third-party-actions@actions/checkout
+      - name: Setup Node
+        uses: Brightspace/setup-node@main
+        with:
+          node-version: 24
+          d2l-registry-token: ${{ secrets.D2L_PACKAGE_REGISTRY_AUTH_TOKEN }}
+
+      - name: Install packages
+        run: |
+          npm i
 
       # see: https://github.com/aws-actions/configure-aws-credentials
       - name: Assume role
@@ -27,9 +36,6 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
-      - name: Install packages
-        run: |
-          npm i
 
       - name: Npm Build
         run: npm run build
